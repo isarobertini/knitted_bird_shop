@@ -1,7 +1,7 @@
 [build]
-  base = ""                     # repo root
-  publish = "frontend/dist"      # where Vite outputs
-  command = "npm run build --prefix frontend"
+  base = ""
+  publish = "frontend/dist"
+  command = "cd frontend && npm install && npm run build"
 
 [[redirects]]
   from = "/*"
