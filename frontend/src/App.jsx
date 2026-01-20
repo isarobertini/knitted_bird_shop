@@ -1,19 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { CartProvider } from "./context/CartContext.jsx";
+import { AppRoutes } from "./routes/AppRoutes.jsx";
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
 
-      <h1 class="text-3xl text-center font-bold underline">
-        Hello world!
-      </h1>
-    </>
-  )
+    <CartProvider>
+      <AppRoutes />
+    </CartProvider>
+
+  );
 }
 
-export default App
+export default App;
