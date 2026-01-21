@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 import { Spinner } from "../ui/Spinner.jsx";
 import { ErrorMessage } from "../ui/ErrorMessage.jsx";
+import { Button } from "../ui/Button.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const UserRegisterForm = () => {
     const { login } = useAuth();
+    const navigate = useNavigate(); // ✅ ADD THIS
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -25,10 +28,21 @@ export const UserRegisterForm = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, email, password }),
             });
-            const data = await res.json();
-            if (!res.ok || !data.token) throw new Error(data.message || "Registration failed");
 
+            const data = await res.json();
+            if (!res.ok || !data.token) {
+                throw new Error(data.message || "Registration failed");
+            }
+
+            // ✅ Auto-login (already correct)
             login(data.token, data.user);
+
+            // ✅ Feedback
+            alert("Registration successful! You are now logged in.");
+
+            // ✅ Redirect
+            navigate("/");
+
         } catch (err) {
             console.error(err);
             setError(err.message);
@@ -38,14 +52,19 @@ export const UserRegisterForm = () => {
     };
 
     return (
-        <form onSubmit={handleRegister} className="flex flex-col gap-4">
-            <h2 className="font-semibold">Shopper Registration</h2>
+        <form
+            onSubmit={handleRegister}
+            className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl flex flex-col gap-4"
+        >
+            <h2 className="font-semibold text-xl">Shopper Registration</h2>
+
             <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
             <input
                 type="email"
@@ -53,6 +72,7 @@ export const UserRegisterForm = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
             <input
                 type="password"
@@ -60,13 +80,13 @@ export const UserRegisterForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
-            <button
-                type="submit"
-                className="bg-green-700 text-white py-2 rounded flex justify-center"
-            >
+
+            <Button type="submit" className="flex justify-center">
                 {loading ? <Spinner /> : "Register & Login"}
-            </button>
+            </Button>
+
             {error && <ErrorMessage message={error} />}
         </form>
     );

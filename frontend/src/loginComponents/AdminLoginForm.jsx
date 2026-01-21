@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { Spinner } from "../ui/Spinner.jsx";
 import { ErrorMessage } from "../ui/ErrorMessage.jsx";
+import { Button } from "../ui/Button.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -40,14 +41,15 @@ export const AdminLoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleAdminLogin} className="flex flex-col gap-4">
-            <h2 className="font-semibold">Admin Login</h2>
+        <form onSubmit={handleAdminLogin} className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl flex flex-col gap-4">
+            <h2 className="font-semibold text-xl">Admin Login</h2>
             <input
                 type="email"
                 placeholder="Admin Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
             <input
                 type="password"
@@ -55,13 +57,14 @@ export const AdminLoginForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
-            <button
+            <Button
                 type="submit"
-                className="bg-red-700 text-white py-2 rounded flex justify-center"
+                className="flex justify-center"
             >
                 {loading ? <Spinner /> : "Login as Admin"}
-            </button>
+            </Button>
             {error && <ErrorMessage message={error} />}
         </form>
     );

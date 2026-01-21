@@ -106,7 +106,7 @@ export const CartProvider = ({ children }) => {
 
     //Proceed to checkout (not implemented yet)
     const proceedToCheckout = async () => {
-        alert("This function is not implemented yet. Please contact mi.robertini@gmail.com for inquiries.");
+        alert("This function is not implemented yet. Please contact mi.robertini@gme.com for inquiries.");
     };
 
 

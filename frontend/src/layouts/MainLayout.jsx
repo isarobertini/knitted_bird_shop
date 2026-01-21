@@ -5,7 +5,7 @@ import { Footer } from "../common/Footer.jsx";
 
 export const MainLayout = () => {
     return (
-        <div className="min-h-screen bg-stone-500 flex flex-col font-stretch-60%">
+        <div className="flex flex-col bg-stone-300 font-stretch-60%">
             <Header />
             <Nav />
             <main className="flex-grow">

@@ -6,7 +6,9 @@ function App() {
   return (
 
     <CartProvider>
-      <AppRoutes />
+      <div className="h-screen">
+        <AppRoutes />
+      </div>
     </CartProvider>
 
   );

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { Spinner } from "../ui/Spinner.jsx";
 import { ErrorMessage } from "../ui/ErrorMessage.jsx";
+import { Button } from "../ui/Button.jsx";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -39,14 +40,19 @@ export const UserLoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
-            <h2 className="font-semibold">Shopper Login</h2>
+        <form
+            onSubmit={handleLogin}
+            className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl flex flex-col gap-4"
+        >
+            <h2 className="font-semibold text-xl">Shopper Login</h2>
+
             <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
             <input
                 type="password"
@@ -54,13 +60,16 @@ export const UserLoginForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
-            <button
+
+            <Button
                 type="submit"
-                className="bg-blue-700 text-white py-2 rounded flex justify-center"
+                className="bg-amber-800 text-stone-200 hover:bg-stone-200 hover:text-amber-800 transition-colors duration-200 py-2 rounded-md flex justify-center"
             >
                 {loading ? <Spinner /> : "Login"}
-            </button>
+            </Button>
+
             {error && <ErrorMessage message={error} />}
         </form>
     );

@@ -3,6 +3,7 @@ import { Spinner } from "../ui/Spinner.jsx";
 import { ErrorMessage } from "../ui/ErrorMessage.jsx";
 import { RequireAdmin } from "./RequireAdmin.jsx";
 import { useAdmin } from "../context/AdminContext.jsx";
+import { Button } from "../ui/Button.jsx";
 
 export const PostBirdForm = () => {
     // Access admin functions from AdminContext
@@ -57,7 +58,7 @@ export const PostBirdForm = () => {
         try {
             // Send POST request to add a new bird
             await postBird(formData);
-            setSuccess("Bird added successfully 🐦");
+            setSuccess("Bird added successfully!");
             resetForm();
             fetchBirds(); // refresh list
         } catch (err) {
@@ -69,7 +70,7 @@ export const PostBirdForm = () => {
 
     return (
         <RequireAdmin>
-            <div className="max-w-xl mx-auto p-6">
+            <div className="max-w-md mx-auto mt-12 p-8 bg-white rounded-xl flex flex-col gap-4">
                 <h1 className="text-2xl font-bold mb-4">Add New Bird</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     {["name", "size", "material", "amount", "price"].map((field) => (
@@ -81,6 +82,7 @@ export const PostBirdForm = () => {
                             value={form[field]}
                             onChange={handleChange}
                             required
+                            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
                         />
                     ))}
                     <textarea
@@ -88,15 +90,16 @@ export const PostBirdForm = () => {
                         name="description"
                         value={form.description}
                         onChange={handleChange}
+                        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
                     />
                     <input type="file" name="image" accept="image/*" onChange={handleChange} required />
-                    <button
+                    <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-red-700 text-white py-2 rounded"
+                        className=""
                     >
                         {loading ? <Spinner /> : "Add Bird"}
-                    </button>
+                    </Button>
                     {error && <ErrorMessage message={error} />}
                     {success && <p className="text-green-700 mt-2">{success}</p>}
                 </form>

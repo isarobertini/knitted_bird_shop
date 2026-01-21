@@ -24,7 +24,7 @@ export const BirdCardPage = () => {
     if (!bird) return <p>Bird not found 🐦</p>;
 
     return (
-        <div className="container mx-auto px-4 py-6">
+        <div className="">
             <BirdCard bird={bird} />
         </div>
     );
