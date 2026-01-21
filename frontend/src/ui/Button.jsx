@@ -1,3 +1,5 @@
+import FadeIn from 'react-fade-in';
+
 export const Button = ({
     children,
     onClick,
@@ -15,14 +17,16 @@ export const Button = ({
         "bg-gray-400 text-gray-700 cursor-not-allowed opacity-60";
 
     return (
-        <button
-            type={type}
-            onClick={disabled ? undefined : onClick}
-            disabled={disabled}
-            className={`${baseClasses} ${disabled ? disabledClasses : enabledClasses
-                } ${className}`}
-        >
-            {children}
-        </button>
+        <FadeIn>
+            <button
+                type={type}
+                onClick={disabled ? undefined : onClick}
+                disabled={disabled}
+                className={`${baseClasses} ${disabled ? disabledClasses : enabledClasses
+                    } ${className}`}
+            >
+                {children}
+            </button>
+        </FadeIn>
     );
 };
