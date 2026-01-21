@@ -1,0 +1,9 @@
+# netlify.toml at the root of your repo
+
+[build]
+  # Netlify will run this command from the root
+  command = "cd frontend && npm ci && npm run build"
+  publish = "frontend/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
