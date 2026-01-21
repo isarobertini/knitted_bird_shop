@@ -1,13 +1,13 @@
-import FadeIn from 'react-fade-in';
 import { useCart } from "../context/CartContext.jsx";
 import { Button } from "../ui/Button.jsx";
+import { ComponentFade } from "../ui/ComponentFade.jsx";
 
 export const BirdCard = ({ bird }) => {
     const { canAddToCart, addToCart } = useCart();
     const outOfStock = !canAddToCart(bird);
 
     return (
-        <FadeIn>
+        <ComponentFade>
             <div className="p-6 h-screen mb-23">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8 border rounded-sm p-6 shadow-xl bg-white">
 
@@ -39,6 +39,6 @@ export const BirdCard = ({ bird }) => {
                     </div>
                 </div>
             </div>
-        </FadeIn>
+        </ComponentFade>
     );
 };

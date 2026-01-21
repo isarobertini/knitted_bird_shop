@@ -1,4 +1,3 @@
-import FadeIn from 'react-fade-in';
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/UseFetch.jsx";
 import { getJSON } from "../utils/Api.js";
@@ -17,22 +16,20 @@ export const BirdList = () => {
     if (!birds.length) return <p>No birds available</p>;
 
     return (
-        <FadeIn>
-            <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-amber-800">
-                {birds.map(bird => (
-                    <li key={bird._id} className="p-3 border border-1 border-black rounded-sm">
-                        <Link to={`/birds/${bird._id}`}>
-                            <img
-                                src={bird.image}
-                                alt={bird.name}
-                                className="w-full rounded-sm h-48 object-cover"
-                            />
-                            <h2 className="mt-2">{bird.name}</h2>
-                        </Link>
-                        <p className="font-bold">{bird.price}kr</p>
-                    </li>
-                ))}
-            </ul>
-        </FadeIn>
+        <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-amber-800">
+            {birds.map(bird => (
+                <li key={bird._id} className="p-3 border border-1 border-black rounded-sm">
+                    <Link to={`/birds/${bird._id}`}>
+                        <img
+                            src={bird.image}
+                            alt={bird.name}
+                            className="w-full rounded-sm h-48 object-cover"
+                        />
+                        <h2 className="mt-2">{bird.name}</h2>
+                    </Link>
+                    <p className="font-bold">{bird.price}kr</p>
+                </li>
+            ))}
+        </ul>
     );
 };

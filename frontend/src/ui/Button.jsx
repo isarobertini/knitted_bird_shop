@@ -1,4 +1,4 @@
-import FadeIn from 'react-fade-in';
+import { ComponentFade } from "./ComponentFade";
 
 export const Button = ({
     children,
@@ -17,7 +17,7 @@ export const Button = ({
         "bg-gray-400 text-gray-700 cursor-not-allowed opacity-60";
 
     return (
-        <FadeIn>
+        <ComponentFade>
             <button
                 type={type}
                 onClick={disabled ? undefined : onClick}
@@ -27,6 +27,6 @@ export const Button = ({
             >
                 {children}
             </button>
-        </FadeIn>
+        </ComponentFade>
     );
 };

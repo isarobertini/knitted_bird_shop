@@ -1,11 +1,11 @@
-import FadeIn from 'react-fade-in';
+import { ComponentFade } from "./ComponentFade";
 
 export const Header = ({ children, className = "" }) => {
     return (
-        <FadeIn>
+        <ComponentFade>
             <h1 className={`" ${className}`}>
                 {children}
             </h1>
-        </FadeIn>
+        </ComponentFade>
     );
 };
