@@ -1,16 +1,59 @@
-# React + Vite
+# Birds Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Frontend Demo](https://knittedbirdshop.netlify.app/)  
+[Deployed Backend API](https://knitted-bird-shop.onrender.com/)
 
-Currently, two official plugins are available:
+A full-stack React + Node.js application for buying and selling birds online. Users can browse birds, add them to a shopping cart, and admins can manage inventory.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### User Features
+- Browse available birds with images, descriptions, and prices.  
+- Add birds to a shopping cart.  
+- Cart updates dynamically to reflect available stock.  
+- Quantity selection in the cart is restricted to available stock.  
+- Users are alerted when attempting to add more than the available quantity.  
+- Login required to add items to the cart.
 
-## Expanding the ESLint configuration
+### Admin Features
+- Admin-only page to add, edit, and delete birds.  
+- Upload bird images and provide details (name, price, stock amount, description, size, material).  
+- Real-time inventory updates after CRUD operations.  
+- Role-based access ensures only admins can manage birds.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Key Problem: Stock Quantity Management
+
+Originally, the front-end allowed users to select a quantity based on the stock, but it was possible to click "Add to Cart" multiple times and exceed the available stock.  
+
+**How it was solved:**
+- The cart now keeps track of how many of each bird are already in the cart.  
+- If the user reaches the stock limit, the "Add to Cart" button is disabled, and a message is shown.  
+- This prevents users from adding more items than are available, both in the UI and in the backend.
+
+---
+
+## Tech Stack
+
+- **Front-end:** React, React Router, Tailwind CSS  
+- **Back-end:** Node.js, Express  
+- **Database:** MongoDB  
+- **Authentication:** JWT, role-based access  
+- **API:** RESTful endpoints for birds and cart  
+
+---
+
+## Future Improvements
+
+- Implement real checkout and payment flow  
+- Add search, filtering, and sorting functionality  
+- Show user cart and order history  
+- Enhance responsive design for mobile devices  
+
+---
+
+**Live Frontend Demo:** [https://knittedbirdshop.netlify.app/](https://knittedbirdshop.netlify.app/)  
+**Deployed Backend API:** [https://knitted-bird-shop.onrender.com/](https://knitted-bird-shop.onrender.com/)
